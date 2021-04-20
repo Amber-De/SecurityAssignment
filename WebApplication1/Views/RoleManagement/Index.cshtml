@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Allocate Roles: ";
+}
+
+<h1>Index</h1>
+
+<form method="post" action="/RolesManagement/AllocateRole">
+    <table>
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tr>
+            <td>Roles: </td>
+            <td>
+                <select name="role">
+                    @foreach (var role in Model.Roles)
+                    {
+                        <option value="@role.Name">@role.Name</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Choose User: </td>
+            <td>
+                <select name="user">
+                    @foreach (var user in Model.Users)
+                    {
+                        var fullname = user.FirstName + "" + user.LastName + "" + user.Email;
+                        <option value="@user.UserName">@user.FirstName </option>
+                    }
+                </select>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Allocate" name="btnName"/>&nbsp;<input type="submit" value="Deallocate" name="btnName" />
+</form>
+
