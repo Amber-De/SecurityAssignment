@@ -46,10 +46,12 @@ namespace WebApplication1
             services.Configure<IdentityOptions>(
                 options =>
                 {
+
+                    options.User.RequireUniqueEmail = true;
                     options.Password.RequiredUniqueChars = 1;
                     options.Password.RequiredLength = 4;
                     options.Password.RequireDigit = false;
-
+                    options.SignIn.RequireConfirmedEmail = true;
                     options.Lockout.MaxFailedAccessAttempts = 5;
                 }
                 );
