@@ -116,7 +116,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             if (result.IsLockedOut)
             {
                 return RedirectToPage("./Lockout");
-            }
+            }/*
             else
             {
                 // If the user does not have an account, then ask the user to create an account.
@@ -131,6 +131,8 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                 }
                 return Page();
             }
+            */
+            return Page();
         }
 
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
@@ -143,12 +145,6 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                 ErrorMessage = "Error loading external login information during confirmation.";
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
-
-            //if info is not null that means that the user is logged in with "google" successfully, you must check with the db
-            //whether the emails obtained in the info has the role of a teacher
-
-            //if info.Email already exists in db >>  check its role
-            //if the info.email does not exist >> you do not allow the person to continue
 
             if (ModelState.IsValid)
             {

@@ -6,22 +6,16 @@ using System.Text;
 
 namespace AssignmentTask.Domain.Models
 {
-    public class Assignment
+    public class Teacher
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         [Required]
-        public string FileName { get; set; } 
-        public string Description { get; set; }
+        public string Name { get; set; }
         [Required]
-        public string Path { get; set; }
+        public string Surname { get; set; }
         [Required]
-        public string Signature { get; set; }
-        [ForeignKey("Student")]
-        public string StudentID { get; set; }
-        [ForeignKey("Task")]
-        public string TaskID { get; set; }
-
+        public string Email { get; set; }
     }
 }

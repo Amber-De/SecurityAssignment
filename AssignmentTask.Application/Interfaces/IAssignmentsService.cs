@@ -1,4 +1,5 @@
 ﻿using AssignmentTask.Application.ViewModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace AssignmentTask.Application.Interfaces
 {
     public interface IAssignmentsService
     {
-        IQueryable<AssignmentViewModel> GetAssignmentsList();
+        void AddAssignment(AssignmentViewModel assignment);
+
+        //download assignment()
     }
 }

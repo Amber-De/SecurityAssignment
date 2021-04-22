@@ -6,8 +6,9 @@ using AssignmentTask.Domain.Models;
 
 namespace AssignmentTask.Domain.Interfaces
 {
-    public class IAssignmentsRepository
+    public interface IAssignmentsRepository
     {
-        IQueryable<Assignment> GetAssignmentsList();
+        Guid AddAssignment(Assignment assignment);
+
     }
 }

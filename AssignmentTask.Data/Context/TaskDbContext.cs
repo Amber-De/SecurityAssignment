@@ -12,7 +12,10 @@ namespace AssignmentTask.Data.Context
         {
         }
 
-        DbSet<Assignment> Assignments { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Task> Tasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
