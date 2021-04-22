@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using AssignmentTask.Application.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -24,17 +26,21 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ITeachersService _teachersService;
+        private readonly IStudentsService _studentsService;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender, ITeachersService teachersService, IStudentsService studentsService )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _teachersService = teachersService;
+            _studentsService = studentsService;
         }
 
         [BindProperty]
@@ -54,17 +60,27 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
-
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
             public string Password { get; set; }
+        }
 
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
+       
+        private static string CreateRandomPassword(int length = 12)
+        {
+            // Create a string of characters, numbers, special characters that allowed in the password  
+            string validChars = "A?BCabc!01DEde23fHJmnoKL9@MNlpOP^&QR56SqrsTU$%VjkWXYZghFGiz4tuv#w7xy8*";
+            Random random = new Random();
+
+            // Select one random character at a time from the string  
+            // and create an array of chars  
+            char[] chars = new char[length];
+            for (int i = 0; i < length; i++)
+            {
+                chars[i] = validChars[random.Next(0, validChars.Length)];
+            }
+            
+            string pass =  new string(chars);
+            
+            return pass;
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -79,12 +95,25 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, Address = Input.Address };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                //user = asp.net user roles
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, Address = Input.Address};
+                var result = await _userManager.CreateAsync(user, Input.Password = CreateRandomPassword());
+                await _userManager.AddToRoleAsync(user, "STUDENT");
+                _studentsService.AddStudent(
+
+                    new AssignmentTask.Application.ViewModels.StudentViewModel
+                    {
+                        Email = Input.Email,
+                        Name = Input.FirstName,
+                        Surname = Input.LastName,
+                        TeacherID = HttpContext.User.Identity.Name
+                    });
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    //to confirm email
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -102,6 +131,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                     }
                     else
                     {
+
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }

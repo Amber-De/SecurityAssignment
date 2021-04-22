@@ -18,15 +18,7 @@ namespace AssignmentTask.Application.Services
         }
         public void AddStudent(StudentViewModel s)
         {
-            Student student = new Student()
-            {
-                Email = s.Email,
-                Name = s.Name,
-                Surname = s.Surname,
-                
-
-            };
-            _teachersRepo.AddStudent(student);
+          
         }
     }
 }

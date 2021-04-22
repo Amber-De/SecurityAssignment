@@ -48,7 +48,7 @@ namespace WebApplication1
                 {
                     options.Password.RequiredUniqueChars = 1;
                     options.Password.RequiredLength = 4;
-                    options.Password.RequireDigit = true;
+                    options.Password.RequireDigit = false;
 
                     options.Lockout.MaxFailedAccessAttempts = 5;
                 }

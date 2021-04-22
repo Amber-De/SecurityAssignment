@@ -3,6 +3,7 @@ using AssignmentTask.Application.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,8 @@ namespace WebApplication1.Controllers
 
                 if (file != null)
                 {
+                    MemoryStream userFile = new MemoryStream();
+
                     using (var f = file.OpenReadStream())
                     {
                         //Reading a number of bytes at the same type(4) and not skipping any(0)
@@ -65,13 +68,14 @@ namespace WebApplication1.Controllers
 
                         uniqueFileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                         assignment.Path = uniqueFileName;
-                        string absolutePath = _host.ContentRootPath + @"\Files\" + uniqueFileName;
+                        string absolutePath = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "ValueableFiles")).Root + uniqueFileName;
 
                         using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
                         {
                             f.CopyTo(fsOut);
                         }
-                          
+
+                        f.CopyTo(userFile);
                         f.Close();
                     }
 

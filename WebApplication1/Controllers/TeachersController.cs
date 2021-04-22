@@ -30,6 +30,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Register(StudentViewModel student)
         {
+
             _teachersService.AddStudent(student);         
             return View();
         }

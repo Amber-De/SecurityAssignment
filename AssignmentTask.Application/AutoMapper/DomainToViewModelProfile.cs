@@ -11,6 +11,9 @@ namespace AssignmentTask.Application.AutoMapper
     {
         public DomainToViewModelProfile()
         {
+            CreateMap<StudentViewModel, Student>();
+            CreateMap<TeacherViewModel, Teacher>();
+            CreateMap<TaskViewModel, Task>();
             CreateMap<Assignment, AssignmentViewModel>();
         }
 
