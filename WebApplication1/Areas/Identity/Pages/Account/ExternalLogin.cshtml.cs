@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using AssignmentTask.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -24,17 +25,21 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly ITeachersService _teachersService;
 
         public ExternalLoginModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ITeachersService teachersService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _emailSender = emailSender;
+            _teachersService = teachersService;
+
         }
 
         [BindProperty]
@@ -52,6 +57,12 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            [Required]
+            public string FirstName { get; set; }
+            [Required]
+            public string LastName { get; set; }
+
+
         }
 
         public IActionResult OnGetAsync()
@@ -90,14 +101,14 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             //if any of the two conditions above fail >>> redirect to login page
 
             string email = info.Principal.Claims.ToList()[4].Value;
-            var currentlyLoggedInUser = await _userManager.FindByNameAsync(email);
-            if(currentlyLoggedInUser == null)
+            var currentlyLoggingInUser = await _userManager.FindByNameAsync(email);
+            if(currentlyLoggingInUser == null)
             {
                
             }
             else
             {
-                bool confirmation = await _userManager.IsInRoleAsync(currentlyLoggedInUser, "TEACHER");
+                bool confirmation = await _userManager.IsInRoleAsync(currentlyLoggingInUser, "TEACHER");
                 if (!confirmation)
                 {
                     //return to login page
@@ -148,7 +159,15 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email,EmailConfirmed = true };
+                _teachersService.AddTeacher(
+
+                       new AssignmentTask.Application.ViewModels.TeacherViewModel
+                       {
+                           Email = Input.Email,
+                           Name = Input.FirstName,
+                           Surname = Input.LastName
+                       });
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

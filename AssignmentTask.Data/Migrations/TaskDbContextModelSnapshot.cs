@@ -41,13 +41,17 @@ namespace AssignmentTask.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StudentID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("StudentID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("TaskID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("TaskID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StudentID");
+
+                    b.HasIndex("TaskID");
 
                     b.ToTable("Assignments");
                 });
@@ -70,10 +74,12 @@ namespace AssignmentTask.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TeacherID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("TeacherID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TeacherID");
 
                     b.ToTable("Students");
                 });
@@ -94,10 +100,12 @@ namespace AssignmentTask.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TeacherID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("TeacherID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TeacherID");
 
                     b.ToTable("Tasks");
                 });
@@ -123,6 +131,39 @@ namespace AssignmentTask.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("AssignmentTask.Domain.Models.Assignment", b =>
+                {
+                    b.HasOne("AssignmentTask.Domain.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("AssignmentTask.Domain.Models.Task", "Task")
+                        .WithMany()
+                        .HasForeignKey("TaskID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AssignmentTask.Domain.Models.Student", b =>
+                {
+                    b.HasOne("AssignmentTask.Domain.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AssignmentTask.Domain.Models.Task", b =>
+                {
+                    b.HasOne("AssignmentTask.Domain.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

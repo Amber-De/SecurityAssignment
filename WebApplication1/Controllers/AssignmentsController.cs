@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
@@ -41,6 +42,7 @@ namespace WebApplication1.Controllers
         public IActionResult Create(IFormFile file, AssignmentViewModel assignment)
         {
             string uniqueFileName = "";
+            assignment.Description = HtmlEncoder.Default.Encode(assignment.Description);
 
             if (Path.GetExtension(file.FileName) == ".pdf")
             {

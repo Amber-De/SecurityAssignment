@@ -116,7 +116,8 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var confirmationLink = Url.Action("ConfirmEmail", "Email", new { token, email = user.Email }, Request.Scheme);
                     EmailHelper emailHelper = new EmailHelper();
-                    bool emailResponse = emailHelper.SendEmail(user.Email, confirmationLink);
+                    string studentPassword = Input.Password;
+                    bool emailResponse = emailHelper.SendEmail(user.Email, confirmationLink, studentPassword);
 
 
                     if (emailResponse)

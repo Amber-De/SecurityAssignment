@@ -7,6 +7,6 @@ namespace AssignmentTask.Application.Interfaces
 {
     public interface ITeachersService
     {
-        void AddStudent(StudentViewModel student);
+        void AddTeacher(TeacherViewModel t);
     }
 }

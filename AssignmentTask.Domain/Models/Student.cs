@@ -18,6 +18,8 @@ namespace AssignmentTask.Domain.Models
         [Required]
         public string Email { get; set; }
         [ForeignKey("Teacher")]
-        public string TeacherID { get; set; }
+        public Guid TeacherID { get; set; }
+
+        public virtual Teacher Teacher { get; set; }
     }
 }

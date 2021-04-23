@@ -18,10 +18,15 @@ namespace AssignmentTask.Domain.Models
         public string Path { get; set; }
         [Required]
         public string Signature { get; set; }
+
         [ForeignKey("Student")]
-        public string StudentID { get; set; }
+        public Guid StudentID { get; set; }
+        public virtual Student Student { get; set; }
+
         [ForeignKey("Task")]
-        public string TaskID { get; set; }
+        public Guid TaskID { get; set; }
+
+        public virtual Task Task { get; set; }
 
     }
 }

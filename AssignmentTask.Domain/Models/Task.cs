@@ -16,8 +16,10 @@ namespace AssignmentTask.Domain.Models
         public string Description { get; set;  }
         [Required]
         public DateTime Deadline { get; set; }
+
         [ForeignKey("Teacher")]
-        public string TeacherID { get; set; }
+        public Guid TeacherID { get; set; }
+        public virtual Teacher Teacher { get; set; }
 
     }
 }

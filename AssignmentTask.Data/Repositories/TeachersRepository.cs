@@ -16,9 +16,9 @@ namespace AssignmentTask.Data.Repositories
             _context = context;
         }
 
-        public void AddStudent(Student student)
+        public void AddTeacher(Teacher teacher)
         {
-            _context.Students.Add(student);
+            _context.Teachers.Add(teacher);
             _context.SaveChanges();
         }
     }
