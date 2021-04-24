@@ -23,5 +23,20 @@ namespace AssignmentTask.Application.Services
         {
             _teachersRepo.AddTeacher(_autoMapper.Map<Teacher>(t));
         }
+
+        public TeacherViewModel GetTeacherId(string email)
+        {
+            var e = _teachersRepo.GetTeacherId(email);
+            if(e != null)
+            {
+                var result = _autoMapper.Map<TeacherViewModel>(e);
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+          
+        }
     }
 }

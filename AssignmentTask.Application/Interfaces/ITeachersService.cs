@@ -8,5 +8,7 @@ namespace AssignmentTask.Application.Interfaces
     public interface ITeachersService
     {
         void AddTeacher(TeacherViewModel t);
+
+        TeacherViewModel GetTeacherId(string email);
     }
 }

@@ -102,7 +102,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
             string email = info.Principal.Claims.ToList()[4].Value;
             var currentlyLoggingInUser = await _userManager.FindByNameAsync(email);
-            if(currentlyLoggingInUser == null)
+            if (currentlyLoggingInUser == null)
             {
                
             }

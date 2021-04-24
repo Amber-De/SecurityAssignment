@@ -1,8 +1,10 @@
 ﻿using AssignmentTask.Data.Context;
 using AssignmentTask.Domain.Interfaces;
 using AssignmentTask.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AssignmentTask.Data.Repositories
@@ -20,6 +22,13 @@ namespace AssignmentTask.Data.Repositories
         {
             _context.Teachers.Add(teacher);
             _context.SaveChanges();
+        }
+
+        public Teacher GetTeacherId(string email)
+        {
+            //return _context.Teachers.Include(x => x.Id).SingleOrDefault(x => x.Email == email);
+            //return  _context.Students.Include(x => x.TeacherID)
+            return  _context.Teachers.SingleOrDefault(x => x.Email == email);
         }
     }
 }

@@ -23,5 +23,6 @@ namespace AssignmentTask.Application.Services
         {
             _studentsRepo.AddStudent(_autoMapper.Map<Student>(student));
         }
+
     }
 }

@@ -100,6 +100,8 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, Address = Input.Address};
                 var result = await _userManager.CreateAsync(user, Input.Password = CreateRandomPassword());
                 await _userManager.AddToRoleAsync(user, "STUDENT");
+               
+                var teacher = _teachersService.GetTeacherId(User.Identity.Name);
                 _studentsService.AddStudent(
 
                     new AssignmentTask.Application.ViewModels.StudentViewModel
@@ -107,8 +109,9 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                         Email = Input.Email,
                         Name = Input.FirstName,
                         Surname = Input.LastName,
-                        TeacherID = HttpContext.User.Identity.Name
-                    });
+                        TeacherID = teacher.Id
+
+                    }); ;
 
                 if (result.Succeeded)
                 {

@@ -8,5 +8,6 @@ namespace AssignmentTask.Domain.Interfaces
     public interface ITeachersRepository
     {
         void AddTeacher(Teacher teacher);
+        Teacher GetTeacherId(string email);
     }
 }

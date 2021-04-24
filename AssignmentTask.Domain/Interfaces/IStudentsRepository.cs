@@ -8,5 +8,6 @@ namespace AssignmentTask.Domain.Interfaces
     public interface IStudentsRepository
     {
         void AddStudent(Student student);
-    }
+
+    } 
 }
