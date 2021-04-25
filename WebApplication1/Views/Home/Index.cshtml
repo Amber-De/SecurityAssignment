@@ -1,15 +1,23 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<h1> Welcome! </h1>
+<h1 class="text-center"> Welcome! </h1>
 <br />
 <br />
 <div class="container">
     <div class="list-group">
-        <a class="list-group-item list-group-item-action" asp-controller="Tasks" asp-action="Create"> Create a Task</a>
-        <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            @if (User.IsInRole("TEACHER"))
+            {
+                <a class="list-group-item list-group-item-action" asp-controller="Tasks" asp-action="Create"> Create a Task</a>
+            }
 
+            <a class="list-group-item list-group-item-action" asp-controller="Tasks" asp-action="List">List of Tasks</a>
+        }
     </div>
 </div>

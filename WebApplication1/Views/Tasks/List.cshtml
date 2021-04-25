@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+
+@model IEnumerable<AssignmentTask.Application.ViewModels.TaskViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List of Tasks</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deadline)
+            </th>
+            @if (User.IsInRole("STUDENT"))
+            {
+                <th scope="col">Assignment</th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline)
+                </td>
+                @if (User.IsInRole("STUDENT"))
+                {
+            <td>
+                <a class="btn btn-dark" href="/Assignments/Create?id=@item.Id">Upload Assignment</a>
+            </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -11,10 +11,12 @@ namespace AssignmentTask.Application.ViewModels
         [Required(ErrorMessage = "Please input name of file")]
         public string FileName { get; set; }
         public string Description { get; set; }
+        [Required]
         public string Path { get; set; }
+        [Required]
         public string Signature { get; set; }
 
-        public StudentViewModel Student { get; set; }
-        public TaskViewModel Task {get; set;}
+        public Guid Student { get; set; }
+        public Guid Task {get; set;}
     }
 }

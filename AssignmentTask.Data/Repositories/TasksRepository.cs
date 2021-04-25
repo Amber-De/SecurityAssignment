@@ -1,6 +1,7 @@
 ﻿using AssignmentTask.Data.Context;
 using AssignmentTask.Domain.Interfaces;
 using AssignmentTask.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,15 @@ namespace AssignmentTask.Data.Repositories
             _context.SaveChanges();
         }
 
-        public IQueryable<Task> GetTasksList()
+        public Task GetTask(Guid taskId)
         {
-            throw new NotImplementedException();
+            return _context.Tasks.Include(x => x.TeacherID).SingleOrDefault(x => x.Id == taskId);
+        }
+
+        public IQueryable<Task> GetTasksList(Guid teacherId)
+        {
+            var list = _context.Tasks.Where(x => x.TeacherID == teacherId);
+            return list;
         }
     }
 }

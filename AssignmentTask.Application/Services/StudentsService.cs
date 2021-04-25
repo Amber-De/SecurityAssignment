@@ -24,5 +24,18 @@ namespace AssignmentTask.Application.Services
             _studentsRepo.AddStudent(_autoMapper.Map<Student>(student));
         }
 
+        public StudentViewModel GetStudent(string email)
+        {
+            var e = _studentsRepo.GetStudent(email);
+            if (e != null)
+            {
+                var result = _autoMapper.Map<StudentViewModel>(e);
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

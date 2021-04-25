@@ -8,7 +8,7 @@ namespace AssignmentTask.Domain.Interfaces
 {
     public interface IAssignmentsRepository
     {
-        Guid AddAssignment(Assignment assignment);
+        void AddAssignment(Assignment assignment);
 
     }
 }

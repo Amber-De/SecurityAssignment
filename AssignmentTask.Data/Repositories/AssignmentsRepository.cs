@@ -16,13 +16,10 @@ namespace AssignmentTask.Data.Repositories
             _context = context;
         }
 
-        public Guid AddAssignment(Assignment assignment)
-        {
-            assignment.Id = Guid.NewGuid();
+        public void AddAssignment(Assignment assignment)
+        {        
             _context.Assignments.Add(assignment);
             _context.SaveChanges();
-
-            return assignment.Id;
         }
     }
 }

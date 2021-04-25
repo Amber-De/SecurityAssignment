@@ -22,5 +22,10 @@ namespace AssignmentTask.Data.Repositories
             _context.Students.Add(student);
             _context.SaveChanges();
         }
+
+        public Student GetStudent(string email)
+        {
+            return _context.Students.SingleOrDefault(x => x.Email == email);
+        }
     }
 }

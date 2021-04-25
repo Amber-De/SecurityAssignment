@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Views\Email\" />
+    <Folder Include="ValueableFiles\" />
     <Folder Include="wwwroot\Files\" />
   </ItemGroup>
 

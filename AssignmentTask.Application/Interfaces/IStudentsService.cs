@@ -9,5 +9,6 @@ namespace AssignmentTask.Application.Interfaces
     public interface IStudentsService
     {
         void AddStudent(StudentViewModel student);
+        StudentViewModel GetStudent(string email);
     }
 }

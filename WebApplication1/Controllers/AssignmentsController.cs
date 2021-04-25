@@ -17,12 +17,17 @@ namespace WebApplication1.Controllers
     public class AssignmentsController: Controller
     {
         private readonly IAssignmentsService _assignmentsService;
+        private readonly IStudentsService _studentsService;
+        private readonly ITasksService _tasksService;
         private readonly IWebHostEnvironment _host;
         private readonly ILogger _logger;
 
-        public AssignmentsController(IAssignmentsService assignmentsService, IWebHostEnvironment host, ILogger<AssignmentsController> logger)
+        public AssignmentsController(IAssignmentsService assignmentsService, IWebHostEnvironment host, ILogger<AssignmentsController> logger,
+            IStudentsService studentsService, ITasksService tasksService)
         {
             _assignmentsService = assignmentsService;
+            _studentsService = studentsService;
+            _tasksService = tasksService;
             _host = host;
             _logger = logger;
         }
@@ -33,13 +38,13 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(Guid id)
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(IFormFile file, AssignmentViewModel assignment)
+        public IActionResult Create(Guid id, IFormFile file, AssignmentViewModel assignment)
         {
             string uniqueFileName = "";
             assignment.Description = HtmlEncoder.Default.Encode(assignment.Description);
@@ -58,9 +63,9 @@ namespace WebApplication1.Controllers
                         byte[] buffer = new byte[4];
                         f.Read(buffer, 0, 4);
 
-                        for(int i = 0; i < whitelist.Length; i++)
+                        for (int i = 0; i < whitelist.Length; i++)
                         {
-                            if(whitelist[i] != buffer[i])
+                            if (whitelist[i] != buffer[i])
                             {
                                 ModelState.AddModelError("file", "File is not valid nor accepted");
                                 return View();
@@ -80,8 +85,13 @@ namespace WebApplication1.Controllers
                         f.CopyTo(userFile);
                         f.Close();
                     }
+                    
+                    string loggedInUser = User.Identity.Name;
+                    var student = _studentsService.GetStudent(loggedInUser);
+                    assignment.Student = student.Id;
 
-                    assignment.Student.Name = HttpContext.User.Identity.Name;
+                    assignment.Task = id;
+                   // var task = _tasksService.GetTask();
                     _assignmentsService.AddAssignment(assignment);
                 }
             }

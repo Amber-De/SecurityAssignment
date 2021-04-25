@@ -10,7 +10,5 @@ namespace AssignmentTask.Application.Interfaces
     public interface IAssignmentsService
     {
         void AddAssignment(AssignmentViewModel assignment);
-
-        //download assignment()
     }
 }
