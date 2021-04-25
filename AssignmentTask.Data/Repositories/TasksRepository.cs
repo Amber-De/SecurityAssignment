@@ -1,4 +1,5 @@
-﻿using AssignmentTask.Domain.Interfaces;
+﻿using AssignmentTask.Data.Context;
+using AssignmentTask.Domain.Interfaces;
 using AssignmentTask.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,19 @@ namespace AssignmentTask.Data.Repositories
 {
     public class TasksRepository : ITasksRepository
     {
-        public Guid AddTask(Task task)
+        TaskDbContext _context;
+
+
+        public TasksRepository(TaskDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public void CreateTask(Task task)
+        {
+
+            _context.Tasks.Add(task);
+            _context.SaveChanges();
         }
 
         public IQueryable<Task> GetTasksList()

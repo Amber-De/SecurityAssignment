@@ -9,6 +9,6 @@ namespace AssignmentTask.Domain.Interfaces
     public interface ITasksRepository
     {
         IQueryable<Task> GetTasksList();
-        Guid AddTask(Task task);
+        void CreateTask(Task task);
     }
 }

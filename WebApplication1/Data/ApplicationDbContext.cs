@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
+using AssignmentTask.Application.ViewModels;
 
 namespace WebApplication1.Data
 {
@@ -15,5 +16,6 @@ namespace WebApplication1.Data
             : base(options)
         {
         }
+        public DbSet<AssignmentTask.Application.ViewModels.TaskViewModel> TaskViewModel { get; set; }
     }
 }

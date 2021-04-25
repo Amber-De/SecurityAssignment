@@ -26,8 +26,6 @@ namespace AssignmentTask.Data.Repositories
 
         public Teacher GetTeacherId(string email)
         {
-            //return _context.Teachers.Include(x => x.Id).SingleOrDefault(x => x.Email == email);
-            //return  _context.Students.Include(x => x.TeacherID)
             return  _context.Teachers.SingleOrDefault(x => x.Email == email);
         }
     }
