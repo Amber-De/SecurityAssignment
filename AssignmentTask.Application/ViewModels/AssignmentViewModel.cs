@@ -16,7 +16,7 @@ namespace AssignmentTask.Application.ViewModels
         [Required]
         public string Signature { get; set; }
 
-        public Guid Student { get; set; }
-        public Guid Task {get; set;}
+        public Guid StudentId { get; set; }
+        public Guid TaskId {get; set;}
     }
 }

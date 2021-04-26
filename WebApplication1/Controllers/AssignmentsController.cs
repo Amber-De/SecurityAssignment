@@ -88,9 +88,9 @@ namespace WebApplication1.Controllers
                     
                     string loggedInUser = User.Identity.Name;
                     var student = _studentsService.GetStudent(loggedInUser);
-                    assignment.Student = student.Id;
+                    assignment.StudentId = student.Id;
 
-                    assignment.Task = id;
+                    assignment.TaskId = id;
                    // var task = _tasksService.GetTask();
                     _assignmentsService.AddAssignment(assignment);
                 }
