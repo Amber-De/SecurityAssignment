@@ -19,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.Signature)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StudentId)
+                @Html.DisplayNameFor(model => model.Student.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TaskId)
+               Task
             </th>
             <th scope="col">Student's Assignment</th>
             <th></th>
@@ -41,10 +41,10 @@
                 @Html.DisplayFor(modelItem => item.Signature)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StudentId)
+                @Html.DisplayFor(modelItem => item.Student.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TaskId)
+                @ViewBag.task.TaskName
             </td>
             <td>
                <a href="/Assignments/StudentAssignment?studentId=@item.StudentId&taskId=@item.TaskId" class="btn btn-outline-info">View</a>

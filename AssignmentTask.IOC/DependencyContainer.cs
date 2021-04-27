@@ -33,6 +33,9 @@ namespace AssignmentTask.IOC
             services.AddScoped<IAssignmentsRepository, AssignmentsRepository>();
             services.AddScoped<IAssignmentsService, AssignmentsService>();
 
+            services.AddScoped<ICommentsRepository, CommentsRepository>();
+            services.AddScoped<ICommentsService, CommentsService>();
+
             services.AddAutoMapper(typeof(AutoMapperConfiguration));
             AutoMapperConfiguration.RegisterMappings();
 

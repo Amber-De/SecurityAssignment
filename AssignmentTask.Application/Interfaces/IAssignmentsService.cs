@@ -10,6 +10,7 @@ namespace AssignmentTask.Application.Interfaces
     public interface IAssignmentsService
     {
         AssignmentViewModel GetAssignment(Guid studentId, Guid TaskId);
+        AssignmentViewModel GetAssignmentById(Guid assignmentId);
         void AddAssignment(AssignmentViewModel assignment);
         IQueryable<AssignmentViewModel> ListAssignments(Guid TaskId);
     }

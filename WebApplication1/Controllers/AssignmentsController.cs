@@ -40,7 +40,22 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Create(Guid id)
         {
-            return View();
+            string loggedInUser = User.Identity.Name;
+            var student = _studentsService.GetStudent(loggedInUser);
+            var task = _tasksService.GetTask(id);
+
+            var a = _assignmentsService.GetAssignment(student.Id, id);
+            if (a != null)
+            {
+                return RedirectToAction("StudentAssignment" , new { studentId = student.Id ,  taskId = id});
+            }else if(DateTime.UtcNow > task.Deadline)
+            {
+                return RedirectToAction("StudentAssignment", new { studentId = student.Id, taskId = id });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -90,23 +105,12 @@ namespace WebApplication1.Controllers
                     var student = _studentsService.GetStudent(loggedInUser);
                     var task = _tasksService.GetTask(id);
 
-                    var a =  _assignmentsService.GetAssignment(student.Id, task.Id);
+                    //var a =  _assignmentsService.GetAssignment(student.Id, task.Id);
                    
-                    if (DateTime.UtcNow > task.Deadline)
-                    {
-                        ViewBag["message"] = "Assignment cannot be uploaded due to tardiness!";
-                    }
-                    else if(a != null)
-                    {
-                        TempData["message"] = "User already uploaded an assignment for this task!";
-                    }
-                    else
-                    {
-                        assignment.StudentId = student.Id;
-                        assignment.TaskId = id;
-                        _assignmentsService.AddAssignment(assignment);
-                        return Redirect("/Home/Index");
-                    }          
+                    assignment.StudentId = student.Id;
+                    assignment.TaskId = id;
+                    _assignmentsService.AddAssignment(assignment);
+                    return Redirect("/Home/Index");                     
                 }
                 TempData["warning"] = "File is null";
                 return RedirectToAction("Create");
@@ -117,10 +121,12 @@ namespace WebApplication1.Controllers
 
         public IActionResult ViewAssignments(Guid id)
         {
-            
-            if(id != null)
+            var task = _tasksService.GetTask(id);
+
+            if (id != null)
             {
                 var list = _assignmentsService.ListAssignments(id);
+                ViewBag.task = task;
                 return View(list);
             }
             else
@@ -131,9 +137,14 @@ namespace WebApplication1.Controllers
 
         public IActionResult StudentAssignment(Guid studentId, Guid taskId)
         {
+            var task = _tasksService.GetTask(taskId);
+            var student = _studentsService.GetStudentById(studentId);
+
             if(studentId != null && taskId != null)
             {
                 var  assignment = _assignmentsService.GetAssignment(studentId, taskId);
+                ViewBag.task = task;
+                ViewBag.student = student;
                 return View(assignment);
             }
             else

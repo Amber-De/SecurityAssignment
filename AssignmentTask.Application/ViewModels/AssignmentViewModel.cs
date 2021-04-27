@@ -18,6 +18,7 @@ namespace AssignmentTask.Application.ViewModels
         public string Signature { get; set; }
 
         public Guid StudentId { get; set; }
+        public Student Student { get; set; }
         public Guid TaskId {get; set;}
     }
 }

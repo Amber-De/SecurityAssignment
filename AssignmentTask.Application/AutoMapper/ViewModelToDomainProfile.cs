@@ -15,6 +15,7 @@ namespace AssignmentTask.Application.AutoMapper
             CreateMap<StudentViewModel, Student>();
             CreateMap<TeacherViewModel, Teacher>();
             CreateMap<TaskViewModel, Task>();
+            CreateMap<CommentViewModel, Comment>();
         }
     }
 }

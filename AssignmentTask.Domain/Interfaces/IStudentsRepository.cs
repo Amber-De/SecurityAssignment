@@ -9,5 +9,7 @@ namespace AssignmentTask.Domain.Interfaces
     {
         void AddStudent(Student student);
         Student GetStudent(string email);
+
+        Student GetStudentById(Guid studentId);
     } 
 }

@@ -24,6 +24,11 @@ namespace AssignmentTask.Data.Repositories
             _context.SaveChanges();
         }
 
+        public Teacher GetTeacherById(Guid teacherId)
+        {
+            return _context.Teachers.SingleOrDefault(x => x.Id == teacherId);
+        }
+
         public Teacher GetTeacherId(string email)
         {
             return  _context.Teachers.SingleOrDefault(x => x.Email == email);

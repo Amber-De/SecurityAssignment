@@ -10,7 +10,7 @@ namespace AssignmentTask.Domain.Interfaces
     {
         void AddAssignment(Assignment assignment);
         IQueryable<Assignment> ListAssignments(Guid taskId);
-        
         Assignment GetAssignment(Guid studentId, Guid taskId);
+        Assignment GetAssignmentById(Guid assignmentId);
     }
 }

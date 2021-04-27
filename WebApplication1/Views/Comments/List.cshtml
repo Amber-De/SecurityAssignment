@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AssignmentTask.Application.ViewModels.CommentViewModel>
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Comments List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Comment
+            </th>
+            <th>
+                Student
+            </th>
+            <th>
+                Teacher
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentArea)
+            </td>
+            <td>
+                @ViewBag.student.Name @ViewBag.student.Surname
+            </td>
+            <td>
+                @ViewBag.teacher.Email
+            </td>
+        </tr>
+          
+        }
+    </tbody>
+</table>

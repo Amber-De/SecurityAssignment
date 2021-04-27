@@ -10,5 +10,6 @@ namespace AssignmentTask.Application.Interfaces
         void AddTeacher(TeacherViewModel t);
 
         TeacherViewModel GetTeacherId(string email);
+        TeacherViewModel GetTeacherById(Guid teacherId);
     }
 }

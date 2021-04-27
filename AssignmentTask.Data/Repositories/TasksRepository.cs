@@ -13,7 +13,6 @@ namespace AssignmentTask.Data.Repositories
     {
         TaskDbContext _context;
 
-
         public TasksRepository(TaskDbContext context)
         {
             _context = context;

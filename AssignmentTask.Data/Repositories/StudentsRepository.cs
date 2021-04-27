@@ -27,5 +27,10 @@ namespace AssignmentTask.Data.Repositories
         {
             return _context.Students.SingleOrDefault(x => x.Email == email);
         }
+
+        public Student GetStudentById(Guid studentId)
+        {
+            return _context.Students.SingleOrDefault(x => x.Id == studentId);
+        }
     }
 }

@@ -27,6 +27,11 @@ namespace AssignmentTask.Data.Repositories
            return _context.Assignments.Where(x => x.TaskID == taskId).SingleOrDefault(x => x.StudentID == studentId);
         }
 
+        public Assignment GetAssignmentById(Guid assignmentId)
+        {
+            return _context.Assignments.SingleOrDefault(x => x.Id == assignmentId);
+        }
+
         public IQueryable<Assignment> ListAssignments(Guid taskId)
         {
             return _context.Assignments.Where(x => x.TaskID == taskId);

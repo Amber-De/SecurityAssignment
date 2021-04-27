@@ -10,5 +10,7 @@ namespace AssignmentTask.Application.Interfaces
     {
         void AddStudent(StudentViewModel student);
         StudentViewModel GetStudent(string email);
+
+        StudentViewModel GetStudentById(Guid studentId);
     }
 }

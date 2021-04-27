@@ -9,5 +9,7 @@ namespace AssignmentTask.Domain.Interfaces
     {
         void AddTeacher(Teacher teacher);
         Teacher GetTeacherId(string email);
+        Teacher GetTeacherById(Guid teacherId);
+
     }
 }

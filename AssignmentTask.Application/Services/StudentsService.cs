@@ -37,5 +37,19 @@ namespace AssignmentTask.Application.Services
                 return null;
             }
         }
+
+        public StudentViewModel GetStudentById(Guid studentId)
+        {
+            var e = _studentsRepo.GetStudentById(studentId);
+            if (e != null)
+            {
+                var result = _autoMapper.Map<StudentViewModel>(e);
+                return result;
+            }
+            else
+            {
+                return null;
+            };
+        }
     }
 }

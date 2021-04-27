@@ -53,8 +53,9 @@
                 @if (User.IsInRole("STUDENT"))
                 {
                     <td>
-                        <a class="btn btn-outline-info" asp-controller="Assignments" asp-action="Create" asp-route-id="@item.Id">Upload Assignment</a>
+                        <a href="/Assignments/Create?id=@item.Id" class="btn btn-outline-info">Upload Assignment</a>
                     </td>
+
                 }
             </tr>
         }

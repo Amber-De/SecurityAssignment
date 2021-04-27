@@ -24,6 +24,20 @@ namespace AssignmentTask.Application.Services
             _teachersRepo.AddTeacher(_autoMapper.Map<Teacher>(t));
         }
 
+        public TeacherViewModel GetTeacherById(Guid teacherId)
+        {
+            var e = _teachersRepo.GetTeacherById(teacherId);
+            if (e != null)
+            {
+                var result = _autoMapper.Map<TeacherViewModel>(e);
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public TeacherViewModel GetTeacherId(string email)
         {
             var e = _teachersRepo.GetTeacherId(email);
