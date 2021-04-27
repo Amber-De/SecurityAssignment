@@ -88,17 +88,60 @@ namespace WebApplication1.Controllers
                     
                     string loggedInUser = User.Identity.Name;
                     var student = _studentsService.GetStudent(loggedInUser);
-                    assignment.StudentId = student.Id;
+                    var task = _tasksService.GetTask(id);
 
-                    assignment.TaskId = id;
-                   // var task = _tasksService.GetTask();
-                    _assignmentsService.AddAssignment(assignment);
+                    var a =  _assignmentsService.GetAssignment(student.Id, task.Id);
+                   
+                    if (DateTime.UtcNow > task.Deadline)
+                    {
+                        ViewBag["message"] = "Assignment cannot be uploaded due to tardiness!";
+                    }
+                    else if(a != null)
+                    {
+                        TempData["message"] = "User already uploaded an assignment for this task!";
+                    }
+                    else
+                    {
+                        assignment.StudentId = student.Id;
+                        assignment.TaskId = id;
+                        _assignmentsService.AddAssignment(assignment);
+                        return Redirect("/Home/Index");
+                    }          
                 }
+                TempData["warning"] = "File is null";
+                return RedirectToAction("Create");
             }
-
-            return View();
+            TempData["warning"] = "Only pdf files";
+            return RedirectToAction("Create");
         }
 
+        public IActionResult ViewAssignments(Guid id)
+        {
+            
+            if(id != null)
+            {
+                var list = _assignmentsService.ListAssignments(id);
+                return View(list);
+            }
+            else
+            {
+                throw new NullReferenceException();
+            } 
+        }
+
+        public IActionResult StudentAssignment(Guid studentId, Guid taskId)
+        {
+            if(studentId != null && taskId != null)
+            {
+                var  assignment = _assignmentsService.GetAssignment(studentId, taskId);
+                return View(assignment);
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+           
+        }
 
     }
 }

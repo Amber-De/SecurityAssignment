@@ -10,7 +10,6 @@ namespace AssignmentTask.Application.Interfaces
     {
         IQueryable<TaskViewModel> GetTasksList(Guid teacherId);
         void CreateTask(TaskViewModel task);
-
         TaskViewModel GetTask(Guid taskId);
     }
 }

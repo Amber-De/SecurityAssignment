@@ -31,7 +31,7 @@ namespace AssignmentTask.Application.Services
 
         public TaskViewModel GetTask(Guid taskId)
         {
-            Task task = _tasksRepo.GetTask(taskId);
+            var task = _tasksRepo.GetTask(taskId);
             return _autoMapper.Map<TaskViewModel>(task);
         }
 

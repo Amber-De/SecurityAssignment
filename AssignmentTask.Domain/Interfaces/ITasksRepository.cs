@@ -10,7 +10,6 @@ namespace AssignmentTask.Domain.Interfaces
     {
         IQueryable<Task> GetTasksList(Guid teacherId);
         void CreateTask(Task task);
-
         Task GetTask(Guid taskId);
     }
 }

@@ -28,7 +28,7 @@ namespace AssignmentTask.Data.Repositories
 
         public Task GetTask(Guid taskId)
         {
-            return _context.Tasks.Include(x => x.TeacherID).SingleOrDefault(x => x.Id == taskId);
+            return _context.Tasks.SingleOrDefault(x => x.Id == taskId);
         }
 
         public IQueryable<Task> GetTasksList(Guid teacherId)

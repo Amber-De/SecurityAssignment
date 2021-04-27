@@ -17,5 +17,6 @@ namespace WebApplication1.Data
         {
         }
         public DbSet<AssignmentTask.Application.ViewModels.TaskViewModel> TaskViewModel { get; set; }
+        public DbSet<AssignmentTask.Application.ViewModels.AssignmentViewModel> AssignmentViewModel { get; set; }
     }
 }

@@ -20,11 +20,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Deadline)
             </th>
+            @if (User.IsInRole("TEACHER"))
+            {
+                <th scope="col"> List of Assignments</th>
+            }
             @if (User.IsInRole("STUDENT"))
             {
                 <th scope="col">Assignment</th>
             }
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
@@ -40,11 +44,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Deadline)
                 </td>
+                @if (User.IsInRole("TEACHER"))
+                {
+                    <td>
+                        <a href="/Assignments/ViewAssignments?id=@item.Id" class="btn btn-outline-info">View Assignments</a>
+                    </td>
+                }
                 @if (User.IsInRole("STUDENT"))
                 {
-            <td>
-                <a class="btn btn-dark" asp-controller="Assignments" asp-action="Create" asp-route-id="@item.Id">Upload Assignment</a>
-            </td>
+                    <td>
+                        <a class="btn btn-outline-info" asp-controller="Assignments" asp-action="Create" asp-route-id="@item.Id">Upload Assignment</a>
+                    </td>
                 }
             </tr>
         }

@@ -17,9 +17,19 @@ namespace AssignmentTask.Data.Repositories
         }
 
         public void AddAssignment(Assignment assignment)
-        {        
+        {
             _context.Assignments.Add(assignment);
             _context.SaveChanges();
+        }
+
+        public Assignment GetAssignment(Guid studentId, Guid taskId)
+        {
+           return _context.Assignments.Where(x => x.TaskID == taskId).SingleOrDefault(x => x.StudentID == studentId);
+        }
+
+        public IQueryable<Assignment> ListAssignments(Guid taskId)
+        {
+            return _context.Assignments.Where(x => x.TaskID == taskId);
         }
     }
 }

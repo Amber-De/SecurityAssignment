@@ -27,5 +27,23 @@ namespace AssignmentTask.Application.Services
         {
             _assignmentsRepo.AddAssignment(_autoMapper.Map<Assignment>(assignmentModel));
         }
+
+        public AssignmentViewModel GetAssignment(Guid studentId, Guid taskId)
+        {
+            if(studentId != null && taskId != null)
+            {
+                var assignment = _assignmentsRepo.GetAssignment(studentId,taskId);
+                return _autoMapper.Map<AssignmentViewModel>(assignment);
+            }
+            else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
+        public IQueryable<AssignmentViewModel> ListAssignments(Guid TaskId)
+        {
+            return _assignmentsRepo.ListAssignments(TaskId).ProjectTo<AssignmentViewModel>(_autoMapper.ConfigurationProvider);
+        }
     }
 }

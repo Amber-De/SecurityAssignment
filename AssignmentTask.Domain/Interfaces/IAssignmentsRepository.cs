@@ -9,6 +9,8 @@ namespace AssignmentTask.Domain.Interfaces
     public interface IAssignmentsRepository
     {
         void AddAssignment(Assignment assignment);
-
+        IQueryable<Assignment> ListAssignments(Guid taskId);
+        
+        Assignment GetAssignment(Guid studentId, Guid taskId);
     }
 }
