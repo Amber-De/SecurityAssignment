@@ -39,7 +39,8 @@
                     @Html.DisplayFor(modelItem => item.TaskName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @{ var description = System.Net.WebUtility.HtmlDecode(item.Description);}
+                    <span>@description</span>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Deadline)

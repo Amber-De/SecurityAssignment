@@ -9,7 +9,7 @@ namespace AssignmentTask.Domain.Interfaces
     public interface ICommentsRepository
     {
         void AddComment(Comment comment);
-        IQueryable<Comment> ListComments(Guid studentId, Guid teacherId, Guid assignmentId);
+        IQueryable<Comment> ListComments(Guid assignmentId);
 
     }
 }

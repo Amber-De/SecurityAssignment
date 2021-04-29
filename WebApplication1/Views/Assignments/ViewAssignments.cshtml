@@ -35,7 +35,8 @@
                 @Html.DisplayFor(modelItem => item.FileName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @{ var description = System.Net.WebUtility.HtmlDecode(item.Description);}
+                <span>@description</span>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Signature)
@@ -47,7 +48,7 @@
                 @ViewBag.task.TaskName
             </td>
             <td>
-               <a href="/Assignments/StudentAssignment?studentId=@item.StudentId&taskId=@item.TaskId" class="btn btn-outline-info">View</a>
+               <a href="/Assignments/StudentAssignment?id=@item.Id" class="btn btn-outline-info">View</a>
             </td>
         </tr>
 }

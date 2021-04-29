@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using System.Text.Encodings.Web;
 
 namespace WebApplication1.Controllers
 {
@@ -35,12 +36,14 @@ namespace WebApplication1.Controllers
 
         [Authorize(Roles = "TEACHER")]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(TaskViewModel task)
         {
             string loggedInUser = User.Identity.Name;
             var teacher = _teachersService.GetTeacherId(loggedInUser);
-            
-            if(task != null )
+
+            task.Description = HtmlEncoder.Default.Encode(task.Description);
+            if (task != null )
             {
                 if(task.Deadline > DateTime.Now) {
 

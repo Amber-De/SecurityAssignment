@@ -9,6 +9,6 @@ namespace AssignmentTask.Application.Interfaces
     public interface ICommentsService
     {
         void AddComment(CommentViewModel comment);
-        IQueryable<CommentViewModel> ListComments(Guid studentId, Guid teacherId, Guid assignmentId);
+        IQueryable<CommentViewModel> ListComments( Guid assignmentId);
     }
 }

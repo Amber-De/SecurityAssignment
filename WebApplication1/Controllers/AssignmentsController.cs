@@ -1,5 +1,6 @@
 ﻿using AssignmentTask.Application.Interfaces;
 using AssignmentTask.Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using WebApplication1.ActionFilters;
 
 namespace WebApplication1.Controllers
 {
@@ -37,28 +39,40 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet][Authorize]
         public IActionResult Create(Guid id)
         {
             string loggedInUser = User.Identity.Name;
             var student = _studentsService.GetStudent(loggedInUser);
             var task = _tasksService.GetTask(id);
-
             var a = _assignmentsService.GetAssignment(student.Id, id);
+
             if (a != null)
             {
-                return RedirectToAction("StudentAssignment" , new { studentId = student.Id ,  taskId = id});
+                return RedirectToAction("StudentAssignment" , new { id = a.Id });
             }else if(DateTime.UtcNow > task.Deadline)
             {
-                return RedirectToAction("StudentAssignment", new { studentId = student.Id, taskId = id });
+                if(a == null)
+                {
+                    ViewBag.task = task.Id;
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("StudentAssignment", new { id = a.Id });
+                }
+                
             }
             else
             {
+                ViewBag.task = task.Id;
                 return View();
             }
+         
         }
 
-        [HttpPost]
+        [HttpPost][ValidateAntiForgeryToken]
+        [Authorize][TaskOwnerAuthorize]
         public IActionResult Create(Guid id, IFormFile file, AssignmentViewModel assignment)
         {
             string uniqueFileName = "";
@@ -119,6 +133,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Create");
         }
 
+        [TaskOwnerAuthorize]
         public IActionResult ViewAssignments(Guid id)
         {
             var task = _tasksService.GetTask(id);
@@ -135,14 +150,15 @@ namespace WebApplication1.Controllers
             } 
         }
 
-        public IActionResult StudentAssignment(Guid studentId, Guid taskId)
+        [AssignmentOwnerAuthorize]
+        public IActionResult StudentAssignment(Guid id)
         {
-            var task = _tasksService.GetTask(taskId);
-            var student = _studentsService.GetStudentById(studentId);
+            var assignment = _assignmentsService.GetAssignmentById(id);
+            var task = _tasksService.GetTask(assignment.TaskId);
+            var student = _studentsService.GetStudentById(assignment.StudentId);
 
-            if(studentId != null && taskId != null)
+            if(task != null && student != null)
             {
-                var  assignment = _assignmentsService.GetAssignment(studentId, taskId);
                 ViewBag.task = task;
                 ViewBag.student = student;
                 return View(assignment);

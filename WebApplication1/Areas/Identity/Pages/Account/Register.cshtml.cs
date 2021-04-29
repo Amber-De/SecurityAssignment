@@ -124,7 +124,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
 
 
                     if (emailResponse)
-                        return RedirectToAction("Home/Index");
+                        return RedirectToAction("/Home/Index");
                     else
                     {
                         // log email failed 

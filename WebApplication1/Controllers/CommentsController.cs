@@ -1,10 +1,13 @@
 ﻿using AssignmentTask.Application.Interfaces;
 using AssignmentTask.Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using WebApplication1.ActionFilters;
 
 namespace WebApplication1.Controllers
 {
@@ -35,10 +38,11 @@ namespace WebApplication1.Controllers
         }
         
         [HttpPost]
-        public IActionResult Create(CommentViewModel comment, Guid Id)
+        [ValidateAntiForgeryToken][AssignmentOwnerAuthorize]
+        public IActionResult Create(CommentViewModel comment, Guid id)
         {
             string loggedInUser = User.Identity.Name;
-
+            comment.CommentArea = HtmlEncoder.Default.Encode(comment.CommentArea);
             if (User.IsInRole("STUDENT"))
             {
                 var student = _studentsService.GetStudent(loggedInUser);
@@ -49,38 +53,48 @@ namespace WebApplication1.Controllers
             {
                 var teacher = _teachersService.GetTeacherId(loggedInUser);
                 comment.TeacherID = teacher.Id;
-                var assignment = _assignmentsService.GetAssignmentById(Id);
+                var assignment = _assignmentsService.GetAssignmentById(id);
                 comment.StudentID = assignment.StudentId;
             }
       
-            comment.AssignmentID = Id;
+            comment.AssignmentID = id;
 
             _commentsService.AddComment(comment);
             return Redirect("/Tasks/List");
         }
 
-        public IActionResult List(Guid Id, Guid StudentId)
+        [AssignmentOwnerAuthorize]
+        public IActionResult List(Guid id)
         {
-            string loggedInUser = User.Identity.Name;
+            var assignment = _assignmentsService.GetAssignmentById(id);
+            var comments = _commentsService.ListComments(id);
+            ViewBag.student = assignment.Student;
+            ViewBag.teacher = assignment.Student.Teacher;
 
-            if (User.IsInRole("TEACHER"))
-            {
-                var teacher = _teachersService.GetTeacherId(loggedInUser);
-                var student = _studentsService.GetStudentById(StudentId);
-                var comments = _commentsService.ListComments(StudentId, teacher.Id, Id); //id = assignmentID
-                ViewBag.teacher = teacher;
-                ViewBag.student = student;
-                return View(comments);
-            }
-            else
-            {
-                var student = _studentsService.GetStudent(loggedInUser);
-                var comments = _commentsService.ListComments(student.Id, student.TeacherID, Id);
-                var teacher = _teachersService.GetTeacherById(student.TeacherID);
-                ViewBag.teacher = teacher;
-                ViewBag.student = student;
-                return View(comments);
-            }
+            return View(comments);
+
+            /*
+                        if (User.IsInRole("TEACHER"))
+                        {
+
+
+                            //var teacher = _teachersService.GetTeacherId(loggedInUser);
+                            //var student = _studentsService.GetStudentById(StudentId);
+                            //var comments = _commentsService.ListComments(StudentId, teacher.Id, Id); //id = assignmentID
+
+                            
+                        }
+                        else
+                        {
+                            var student = _studentsService.GetStudent(loggedInUser);
+                            var comments = _commentsService.ListComments(student.Id, student.TeacherID, Id);
+                            var teacher = _teachersService.GetTeacherById(student.TeacherID);
+                            ViewBag.teacher = teacher;
+                            ViewBag.student = student;
+                            return View(comments);
+                        }
+
+                        */
         }
     }
 }

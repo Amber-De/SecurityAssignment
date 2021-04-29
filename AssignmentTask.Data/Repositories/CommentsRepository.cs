@@ -24,9 +24,9 @@ namespace AssignmentTask.Data.Repositories
             _context.SaveChanges();
         }
 
-        public IQueryable<Comment> ListComments(Guid studentId, Guid teacherId, Guid assignmentId)
+        public IQueryable<Comment> ListComments(Guid assignmentId)
         {
-            return _context.Comments.Include(x => x.Assignment).Where(x => x.StudentID == studentId).Where(x => x.TeacherID == teacherId);
+            return _context.Comments.Where(x => x.AssignmentID == assignmentId);
         }
     }
 }

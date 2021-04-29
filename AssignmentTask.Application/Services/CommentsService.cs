@@ -26,9 +26,9 @@ namespace AssignmentTask.Application.Services
             _commentsRepo.AddComment(_mapper.Map<Comment>(comment));
         }
 
-        public IQueryable<CommentViewModel> ListComments(Guid studentId, Guid teacherId, Guid assignmentId)
+        public IQueryable<CommentViewModel> ListComments(Guid assignmentId)
         {
-            return _commentsRepo.ListComments(studentId,teacherId,assignmentId).ProjectTo<CommentViewModel>(_mapper.ConfigurationProvider);
+            return _commentsRepo.ListComments(assignmentId).ProjectTo<CommentViewModel>(_mapper.ConfigurationProvider);
         }
     }
 }
