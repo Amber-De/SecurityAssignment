@@ -15,6 +15,7 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using WebApplication1.ActionFilters;
 using WebApplication1.Models;
+using WebApplication1.Utility;
 
 namespace WebApplication1.Controllers
 {
@@ -134,14 +135,16 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Create");
         }
 
-        [TaskOwnerAuthorize]
-        public IActionResult ViewAssignments(Guid id)
+        //[TaskOwnerAuthorize]
+        public IActionResult ViewAssignments(string id)
         {
-            var task = _tasksService.GetTask(id);
+            string idDecrypt = Encryption.SymmetricDecrypt(id);
+            Guid taskId = Guid.Parse(idDecrypt);
+            var task = _tasksService.GetTask(taskId);
 
             if (id != null)
             {
-                var list = _assignmentsService.ListAssignments(id);
+                var list = _assignmentsService.ListAssignments(taskId);
                 ViewBag.task = task;
                 _logger.LogInformation("List of Assignments was show successfully");
                 return View(list);
