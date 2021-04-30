@@ -10,9 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using WebApplication1.ActionFilters;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -52,16 +54,7 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("StudentAssignment" , new { id = a.Id });
             }else if(DateTime.UtcNow > task.Deadline)
             {
-                if(a == null)
-                {
-                    ViewBag.task = task.Id;
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction("StudentAssignment", new { id = a.Id });
-                }
-                
+                 return RedirectToAction("StudentAssignment", new { id = a.Id });
             }
             else
             {
@@ -72,11 +65,11 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost][ValidateAntiForgeryToken]
-        [Authorize][TaskOwnerAuthorize]
         public IActionResult Create(Guid id, IFormFile file, AssignmentViewModel assignment)
         {
             string uniqueFileName = "";
             assignment.Description = HtmlEncoder.Default.Encode(assignment.Description);
+            IPAddress remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
 
             if (Path.GetExtension(file.FileName) == ".pdf")
             {
@@ -105,31 +98,39 @@ namespace WebApplication1.Controllers
                         uniqueFileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                         assignment.Path = uniqueFileName;
                         string absolutePath = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "ValueableFiles")).Root + uniqueFileName;
-
-                        using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
+                        try
                         {
-                            f.CopyTo(fsOut);
-                        }
+                            using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
+                            {
+                                f.CopyTo(fsOut);
+                            }
 
-                        f.CopyTo(userFile);
-                        f.Close();
+                            f.CopyTo(userFile);
+                            f.Close();
+                        }
+                        catch(Exception ex)
+                        {
+                            
+                            _logger.LogError(ex, "Error while saving the file try again later");
+                            return View("Error", new ErrorViewModel() { Message = "Error while saving the file try again later" });
+                        }
+                       
                     }
                     
                     string loggedInUser = User.Identity.Name;
                     var student = _studentsService.GetStudent(loggedInUser);
                     var task = _tasksService.GetTask(id);
-
-                    //var a =  _assignmentsService.GetAssignment(student.Id, task.Id);
-                   
+                                                           
                     assignment.StudentId = student.Id;
                     assignment.TaskId = id;
                     _assignmentsService.AddAssignment(assignment);
+                    _logger.LogInformation(loggedInUser, "User Uploaded a file successfully", remoteIpAddress);
                     return Redirect("/Home/Index");                     
                 }
-                TempData["warning"] = "File is null";
+                TempData["error"] = "File is null";
                 return RedirectToAction("Create");
             }
-            TempData["warning"] = "Only pdf files";
+            TempData["error"] = "Only pdf files";
             return RedirectToAction("Create");
         }
 
@@ -142,6 +143,7 @@ namespace WebApplication1.Controllers
             {
                 var list = _assignmentsService.ListAssignments(id);
                 ViewBag.task = task;
+                _logger.LogInformation("List of Assignments was show successfully");
                 return View(list);
             }
             else

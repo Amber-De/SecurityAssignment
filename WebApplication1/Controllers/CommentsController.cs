@@ -72,29 +72,6 @@ namespace WebApplication1.Controllers
             ViewBag.teacher = assignment.Student.Teacher;
 
             return View(comments);
-
-            /*
-                        if (User.IsInRole("TEACHER"))
-                        {
-
-
-                            //var teacher = _teachersService.GetTeacherId(loggedInUser);
-                            //var student = _studentsService.GetStudentById(StudentId);
-                            //var comments = _commentsService.ListComments(StudentId, teacher.Id, Id); //id = assignmentID
-
-                            
-                        }
-                        else
-                        {
-                            var student = _studentsService.GetStudent(loggedInUser);
-                            var comments = _commentsService.ListComments(student.Id, student.TeacherID, Id);
-                            var teacher = _teachersService.GetTeacherById(student.TeacherID);
-                            ViewBag.teacher = teacher;
-                            ViewBag.student = student;
-                            return View(comments);
-                        }
-
-                        */
         }
     }
 }

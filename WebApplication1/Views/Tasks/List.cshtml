@@ -53,11 +53,18 @@
                 }
                 @if (User.IsInRole("STUDENT"))
                 {
-                    <td>
-                        <a href="/Assignments/Create?id=@item.Id" class="btn btn-outline-info">Upload Assignment</a>
-                    </td>
+                    @if (DateTime.Now <= item.Deadline)
+                    {
+                        <td>
+                            <a href="/Assignments/Create?id=@item.Id" class="btn btn-outline-info">Upload Assignment</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>CLOSED</td>
+                    }
 
-                }
+                 }
             </tr>
         }
     </tbody>

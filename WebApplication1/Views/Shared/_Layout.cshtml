@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -34,7 +34,13 @@
         @if (TempData["message"] != null)
         {
             <div class="alert alert-primary" role="alert">
-                @TempData[""]
+                @TempData["message"]
+            </div>
+        }
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-warning" role="alert">
+                @TempData["error"]
             </div>
         }
         <main role="main" class="pb-3">

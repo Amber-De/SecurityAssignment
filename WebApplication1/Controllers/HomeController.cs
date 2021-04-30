@@ -20,6 +20,7 @@ namespace WebApplication1.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Home index accessed");
             return View();
         }
 

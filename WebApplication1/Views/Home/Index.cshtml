@@ -15,6 +15,7 @@
             @if (User.IsInRole("TEACHER"))
             {
                 <a class="list-group-item list-group-item-action" asp-controller="Tasks" asp-action="Create"> Create a Task</a>
+                <a class="list-group-item list-group-item-action" asp-controller="RoleManagement" asp-action="Index"> Allocate Role</a>
             }
             <a class="list-group-item list-group-item-action" asp-controller="Tasks" asp-action="List">List of Tasks</a>
         }

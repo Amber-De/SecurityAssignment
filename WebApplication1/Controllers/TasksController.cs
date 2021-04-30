@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.Text.Encodings.Web;
+using Microsoft.Extensions.Logging;
 
 namespace WebApplication1.Controllers
 {
@@ -16,11 +17,13 @@ namespace WebApplication1.Controllers
         private readonly ITasksService _tasksService;
         private readonly ITeachersService _teachersService;
         private readonly IStudentsService _studentsService;
-        public TasksController(ITasksService tasksService, ITeachersService teachersService, IStudentsService studentsService)
+        private readonly ILogger _logger;
+        public TasksController(ITasksService tasksService, ITeachersService teachersService, IStudentsService studentsService, ILogger<AssignmentsController> logger)
         {
             _tasksService = tasksService;
             _teachersService = teachersService;
             _studentsService = studentsService;
+            _logger = logger;
         }
         public IActionResult Index()
         {
@@ -60,6 +63,7 @@ namespace WebApplication1.Controllers
             }
             else
             {
+                _logger.LogError( "Task is not found");
                 throw new ArgumentNullException();
             }
         }

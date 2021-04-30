@@ -24,11 +24,12 @@ namespace WebApplication1.Controllers
         public IActionResult Index()
         {
             RolesManagementModel model = new RolesManagementModel();
+            
             model.Users = _userManager.Users.ToList();
             model.Roles = _roleManager.Roles.ToList();
             return View(model);
         }
-        public async Task<IActionResult> AllocateRoleAsync(string role, string user, string btnName)
+        public async Task<IActionResult> AllocateRole(string role, string user, string btnName)
         {
             var returnedUser = await _userManager.FindByNameAsync(user);
 
@@ -49,7 +50,7 @@ namespace WebApplication1.Controllers
             {
                 if (returnedUser != null)
                 {
-                    await _userManager.AddToRoleAsync(returnedUser, role);
+                    await _userManager.RemoveFromRoleAsync(returnedUser, role);
                     TempData["message"] = "successfully deallocated";
                 }
                 else
