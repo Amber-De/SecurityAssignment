@@ -49,7 +49,7 @@
             </td>
             <td>
                 
-               <a href="/Assignments/StudentAssignment?id=@item.Id" class="btn btn-outline-info">View</a>
+               <a href="/Assignments/StudentAssignment?id=@WebApplication1.Utility.Encryption.SymmetricEncrypt(item.Id.ToString())" class="btn btn-outline-info">View</a>
             </td>
         </tr>
 }

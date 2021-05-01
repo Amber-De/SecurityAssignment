@@ -135,7 +135,6 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Create");
         }
 
-        //[TaskOwnerAuthorize]
         public IActionResult ViewAssignments(string id)
         {
             string idDecrypt = Encryption.SymmetricDecrypt(id);

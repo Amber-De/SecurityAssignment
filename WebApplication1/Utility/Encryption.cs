@@ -13,6 +13,12 @@ namespace WebApplication1.Utility
         public byte[] SecretKey { get; set; }
         public byte[] Iv { get; set; }
     }
+
+    public class AsymmetricKeys
+    {
+        public string PublicKey { get; set; }
+        public string PrivateKey { get; set; }
+    }
     public class Encryption
     {
         //generating a secret key from this password & adding more security when using salt
@@ -70,7 +76,6 @@ namespace WebApplication1.Utility
             Rijndael myAlg = Rijndael.Create();
             var keys = GenerateKeys();
 
-            //Loading the data we are about to encrypt
             MemoryStream msIn = new MemoryStream(cipherAsBytes);
             msIn.Position = 0;
 
@@ -126,6 +131,52 @@ namespace WebApplication1.Utility
             //Converting back to string
             string originalText = Encoding.UTF32.GetString(clearDataAsBytes);
             return originalText;
+        }
+
+        public AsymmetricKeys GenerateAsymmetricKeys()
+        {
+            RSACryptoServiceProvider myAlg = new RSACryptoServiceProvider();
+            AsymmetricKeys myKeys = new AsymmetricKeys()
+            {
+                PublicKey = myAlg.ToXmlString(false),
+                PrivateKey = myAlg.ToXmlString(true)
+            };
+
+            return myKeys;
+        }
+
+        public string AsymmetricEncrypt(string data, string publicKey)
+        {
+            RSACryptoServiceProvider myAlg = new RSACryptoServiceProvider();
+           
+            myAlg.FromXmlString(publicKey);
+            byte[] dataAsBytes = Encoding.UTF32.GetBytes(data);
+            byte[] cipher = myAlg.Encrypt(dataAsBytes, RSAEncryptionPadding.Pkcs1);
+
+            return Convert.ToBase64String(cipher);
+        }
+
+        public string AsymmetricDecrypt(string cipher, string privateKey)
+        {
+            RSACryptoServiceProvider myAlg = new RSACryptoServiceProvider();
+
+            byte[] cipherAsBytes = Convert.FromBase64String(cipher);
+            byte[] originalText = myAlg.Decrypt(cipherAsBytes, RSAEncryptionPadding.Pkcs1);
+
+            return Encoding.UTF32.GetString(originalText);
+        }
+        //With the AsymmetricEncrypt we are going to encrypt the symmetric keys
+
+        public MemoryStream HybridEnryption(MemoryStream clearFile, string publicKey)
+        {
+            Rijndael myAlg = Rijndael.Create();
+            myAlg.GenerateKey();
+            myAlg.GenerateIV();
+
+            var key = myAlg.Key;
+            var iv = myAlg.IV;
+
+            
         }
     }
 }
