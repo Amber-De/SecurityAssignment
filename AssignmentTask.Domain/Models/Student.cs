@@ -21,5 +21,8 @@ namespace AssignmentTask.Domain.Models
         public Guid TeacherID { get; set; }
 
         public virtual Teacher Teacher { get; set; }
+
+        public string PublicKey { get; set; }
+        public string PrivateKey { get; set; }
     }
 }

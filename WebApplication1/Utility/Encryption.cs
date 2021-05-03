@@ -53,17 +53,16 @@ namespace WebApplication1.Utility
         }
 
         //Taking in the original data and return the encrypted data
-        public static byte[] SymmetricEncrypt(byte[] clearData)
+        public static byte[] SymmetricEncrypt(byte[] clearData, byte[] iv, byte[] secretKey)
         {
             Rijndael myAlg = Rijndael.Create();
-            var keys = GenerateKeys();
 
             //Loading the data we are about to encrypt
             MemoryStream msIn = new MemoryStream(clearData);
             msIn.Position = 0;
 
             MemoryStream msOut = new MemoryStream();
-            CryptoStream cs = new CryptoStream(msOut, myAlg.CreateEncryptor(keys.SecretKey, keys.Iv), CryptoStreamMode.Write);
+            CryptoStream cs = new CryptoStream(msOut, myAlg.CreateEncryptor(secretKey, iv), CryptoStreamMode.Write);
             msIn.CopyTo(cs);
             cs.FlushFinalBlock();
             cs.Close();
@@ -90,9 +89,11 @@ namespace WebApplication1.Utility
 
         public static string SymmetricEncrypt(string clearData)
         {
+            var keys = GenerateKeys();
+
             //Converting from string to an array of bytes[] - encrypting
             byte[] clearDataAsBytes = Encoding.UTF32.GetBytes(clearData);
-            byte[] cipherAsBytes = SymmetricEncrypt(clearDataAsBytes);
+            byte[] cipherAsBytes = SymmetricEncrypt(clearDataAsBytes, keys.Iv, keys.SecretKey);
 
             //Converting back to string
             string cipher = Convert.ToBase64String(cipherAsBytes);
@@ -133,7 +134,7 @@ namespace WebApplication1.Utility
             return originalText;
         }
 
-        public AsymmetricKeys GenerateAsymmetricKeys()
+        public static AsymmetricKeys GenerateAsymmetricKeys()
         {
             RSACryptoServiceProvider myAlg = new RSACryptoServiceProvider();
             AsymmetricKeys myKeys = new AsymmetricKeys()
@@ -143,40 +144,52 @@ namespace WebApplication1.Utility
             };
 
             return myKeys;
+            
         }
 
-        public string AsymmetricEncrypt(string data, string publicKey)
+        public static byte[] AsymmetricEncrypt(byte[] data, string publicKey)
         {
             RSACryptoServiceProvider myAlg = new RSACryptoServiceProvider();
            
             myAlg.FromXmlString(publicKey);
-            byte[] dataAsBytes = Encoding.UTF32.GetBytes(data);
-            byte[] cipher = myAlg.Encrypt(dataAsBytes, RSAEncryptionPadding.Pkcs1);
 
-            return Convert.ToBase64String(cipher);
+            byte[] cipher = myAlg.Encrypt(data, RSAEncryptionPadding.Pkcs1);
+
+            return cipher;
         }
 
-        public string AsymmetricDecrypt(string cipher, string privateKey)
+        public static byte[] AsymmetricDecrypt(byte[] cipher, string privateKey)
         {
             RSACryptoServiceProvider myAlg = new RSACryptoServiceProvider();
 
-            byte[] cipherAsBytes = Convert.FromBase64String(cipher);
-            byte[] originalText = myAlg.Decrypt(cipherAsBytes, RSAEncryptionPadding.Pkcs1);
+            byte[] originalText = myAlg.Decrypt(cipher, RSAEncryptionPadding.Pkcs1);
 
-            return Encoding.UTF32.GetString(originalText);
+            return originalText;
         }
         //With the AsymmetricEncrypt we are going to encrypt the symmetric keys
 
-        public MemoryStream HybridEnryption(MemoryStream clearFile, string publicKey)
+        public static MemoryStream HybridEnryption(MemoryStream clearFile, string publicKey)
         {
             Rijndael myAlg = Rijndael.Create();
-            myAlg.GenerateKey();
-            myAlg.GenerateIV();
+            myAlg.GenerateKey(); //secretkey
+            myAlg.GenerateIV(); //iv
 
             var key = myAlg.Key;
             var iv = myAlg.IV;
 
-            
+            byte[] fileInBytes = clearFile.ToArray();
+            var encryptedFile = SymmetricEncrypt(fileInBytes, iv, key);
+            byte[] encryptedKey = AsymmetricEncrypt(key, publicKey);
+
+            MemoryStream msOut = new MemoryStream();
+            msOut.Write(encryptedKey, 0, encryptedKey.Length);
+            msOut.Write(iv, 0, iv.Length);
+
+            MemoryStream encryptedFileContent = new MemoryStream(encryptedFile);
+            encryptedFileContent.Position = 0;
+            encryptedFileContent.CopyTo(msOut);
+
+            return msOut;
         }
     }
 }

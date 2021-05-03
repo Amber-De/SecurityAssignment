@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Email;
 using WebApplication1.Models;
+using WebApplication1.Utility;
 
 namespace WebApplication1.Areas.Identity.Pages.Account
 {
@@ -96,11 +97,13 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                var myKeys = Encryption.GenerateAsymmetricKeys();
+
                 //user = asp.net user roles
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, Address = Input.Address};
                 var result = await _userManager.CreateAsync(user, Input.Password = CreateRandomPassword());
                 await _userManager.AddToRoleAsync(user, "STUDENT");
-               
+                
                 var teacher = _teachersService.GetTeacherId(User.Identity.Name);
                 _studentsService.AddStudent(
 
@@ -109,9 +112,10 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                         Email = Input.Email,
                         Name = Input.FirstName,
                         Surname = Input.LastName,
-                        TeacherID = teacher.Id
-
-                    }); ;
+                        TeacherID = teacher.Id,
+                        PublicKey = myKeys.PublicKey,
+                        PrivateKey = myKeys.PrivateKey
+                    }) ; 
 
                 if (result.Succeeded)
                 {

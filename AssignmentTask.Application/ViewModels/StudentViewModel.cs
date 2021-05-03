@@ -14,5 +14,8 @@ namespace AssignmentTask.Application.ViewModels
         public string Surname { get; set; }
 
         public Guid TeacherID { get; set; }
+
+        public string PublicKey { get; set; }
+        public string PrivateKey { get; set; }
     }
 }

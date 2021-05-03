@@ -48,7 +48,7 @@
                 @if (User.IsInRole("TEACHER"))
                 {
                     <td>
-                        <a href="/Assignments/ViewAssignments?id=@item.Id" class="btn btn-outline-info">View Assignments</a>
+                        <a href="/Assignments/ViewAssignments?id=@WebApplication1.Utility.Encryption.SymmetricEncrypt(item.Id.ToString())" class="btn btn-outline-info">View Assignments</a>
                     </td>
                 }
                 @if (User.IsInRole("STUDENT"))
