@@ -151,7 +151,7 @@ namespace WebApplication1.Utility
         {
             RSACryptoServiceProvider myAlg = new RSACryptoServiceProvider();
            
-            myAlg.FromXmlString(publicKey);
+             myAlg.FromXmlString(publicKey);
 
             byte[] cipher = myAlg.Encrypt(data, RSAEncryptionPadding.Pkcs1);
 
@@ -190,6 +190,32 @@ namespace WebApplication1.Utility
             encryptedFileContent.CopyTo(msOut);
 
             return msOut;
+        }
+
+        public static MemoryStream HybridDecrypt(MemoryStream encryptedFile, string privateKey)
+        {
+            encryptedFile.Position = 0;
+
+            //Reading the encrypted key
+            byte[] encKey = new byte[128];
+            //Reading the 128bytes
+            encryptedFile.Read(encKey, 0, 128);
+            byte[] key = AsymmetricDecrypt(encKey, privateKey);
+
+            //Reading the encrypted IV
+            byte[] encIv = new byte[128];
+            encryptedFile.Read(encIv, 0, 128);
+            byte[] iv = AsymmetricDecrypt(encIv, privateKey);
+
+            MemoryStream encFile = new MemoryStream();
+            encryptedFile.CopyTo(encFile);
+
+            byte[] encFileInBytes = encFile.ToArray();
+            byte[] fileDecrypted = SymmetricDecrypt(encFileInBytes);
+
+            MemoryStream originalFile = new MemoryStream(fileDecrypted);
+
+            return originalFile;
         }
     }
 }

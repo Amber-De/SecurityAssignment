@@ -43,17 +43,17 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet][Authorize]
-        public IActionResult Create(Guid id)
+        public IActionResult Create(Guid TaskId)
         {
             string loggedInUser = User.Identity.Name;
             var student = _studentsService.GetStudent(loggedInUser);
-            var task = _tasksService.GetTask(id);
-            var a = _assignmentsService.GetAssignment(student.Id, id);
+            var task = _tasksService.GetTask(TaskId);
+            var a = _assignmentsService.GetAssignment(student.Id, TaskId);
 
             if (a != null)
             {
                 return RedirectToAction("StudentAssignment" , new { id = a.Id });
-            }else if(DateTime.UtcNow > task.Deadline)
+            }else if(DateTime.Compare(DateTime.Now, task.Deadline) < 0 && a != null)
             {
                  return RedirectToAction("StudentAssignment", new { id = a.Id });
             }
@@ -66,11 +66,14 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost][ValidateAntiForgeryToken]
-        public IActionResult Create(Guid id, IFormFile file, AssignmentViewModel assignment)
+        public IActionResult Create(Guid TaskId, IFormFile file, AssignmentViewModel assignment)
         {
             string uniqueFileName = "";
             assignment.Description = HtmlEncoder.Default.Encode(assignment.Description);
             IPAddress remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
+
+            string loggedInUser = User.Identity.Name;
+            var student = _studentsService.GetStudent(loggedInUser);
 
             if (Path.GetExtension(file.FileName) == ".pdf")
             {
@@ -99,14 +102,18 @@ namespace WebApplication1.Controllers
                         uniqueFileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                         assignment.Path = uniqueFileName;
                         string absolutePath = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "ValueableFiles")).Root + uniqueFileName;
+
+
+                        f.CopyTo(userFile);
+                        var encryptedFile = Encryption.HybridEnryption(userFile, student.PublicKey);
+
                         try
                         {
                             using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
                             {
-                                f.CopyTo(fsOut);
+                                encryptedFile.CopyTo(fsOut);
                             }
 
-                            f.CopyTo(userFile);
                             f.Close();
                         }
                         catch(Exception ex)
@@ -117,13 +124,9 @@ namespace WebApplication1.Controllers
                         }
                        
                     }
-                    
-                    string loggedInUser = User.Identity.Name;
-                    var student = _studentsService.GetStudent(loggedInUser);
-                    var task = _tasksService.GetTask(id);
                                                            
                     assignment.StudentId = student.Id;
-                    assignment.TaskId = id;
+                    assignment.TaskId = TaskId;
                     _assignmentsService.AddAssignment(assignment);
                     _logger.LogInformation(loggedInUser, "User Uploaded a file successfully", remoteIpAddress);
                     return Redirect("/Home/Index");                     
@@ -161,7 +164,7 @@ namespace WebApplication1.Controllers
             var task = _tasksService.GetTask(assignment.TaskId);
             var student = _studentsService.GetStudentById(assignment.StudentId);
 
-            if(task != null && student != null)
+            if (task != null && student != null)
             {
                 ViewBag.task = task;
                 ViewBag.student = student;
@@ -171,8 +174,34 @@ namespace WebApplication1.Controllers
             {
                 throw new NullReferenceException();
             }
-           
         }
 
+        public IActionResult Download(Guid assignmentId)
+        {
+            string loggedInUser = User.Identity.Name;
+            var assignment = _assignmentsService.GetAssignmentById(assignmentId);
+
+            if (User.IsInRole("STUDENT"))
+            {
+                string privateKey = assignment.Student.PrivateKey;
+                string fileName = assignment.FileName;
+                string absolutePath = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "ValueableFiles")).Root + assignment.Path;
+                try
+                {
+                    using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
+                    {
+                        MemoryStream download = Encryption.HybridDecrypt(privateKey);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    _logger.LogError(ex, "Error while saving the file try again later");
+                    return View("Error", new ErrorViewModel() { Message = "Error while downloading the file try again later" });
+                }
+
+                return View();
+            }
+        }
     }
 }

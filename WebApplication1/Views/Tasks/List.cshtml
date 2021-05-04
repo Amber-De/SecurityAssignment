@@ -34,38 +34,39 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskName)
+            </td>
+            <td>
+                @{ var description = System.Net.WebUtility.HtmlDecode(item.Description);}
+                <span>@description</span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deadline)
+            </td>
+            @if (User.IsInRole("TEACHER"))
+            {
                 <td>
-                    @Html.DisplayFor(modelItem => item.TaskName)
+                    <a href="/Assignments/ViewAssignments?id=@WebApplication1.Utility.Encryption.SymmetricEncrypt(item.Id.ToString())" class="btn btn-outline-info">View Assignments</a>
                 </td>
-                <td>
-                    @{ var description = System.Net.WebUtility.HtmlDecode(item.Description);}
-                    <span>@description</span>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Deadline)
-                </td>
-                @if (User.IsInRole("TEACHER"))
+            }
+            @if (User.IsInRole("STUDENT"))
+            {
+                @if (DateTime.Now <= item.Deadline)
                 {
                     <td>
-                        <a href="/Assignments/ViewAssignments?id=@WebApplication1.Utility.Encryption.SymmetricEncrypt(item.Id.ToString())" class="btn btn-outline-info">View Assignments</a>
+                        <a href="/Assignments/Create?TaskId=@item.Id" class="btn btn-outline-info">Upload Assignment</a>
                     </td>
                 }
-                @if (User.IsInRole("STUDENT"))
+                else
                 {
-                    @if (DateTime.Now <= item.Deadline)
-                    {
-                        <td>
-                            <a href="/Assignments/Create?id=@item.Id" class="btn btn-outline-info">Upload Assignment</a>
-                        </td>
-                    }
-                    else
-                    {
-                        <td>CLOSED</td>
-                    }
+                    <td>CLOSED</td>
+                    <!-- <a href="/Assignments/StudentAssignment?id=@item.Id" class="btn btn-outline-info">View</a>-->
+                }
 
-                 }
-            </tr>
+            }
+        </tr>
         }
     </tbody>
 </table>
