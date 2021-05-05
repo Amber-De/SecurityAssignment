@@ -186,11 +186,14 @@ namespace WebApplication1.Controllers
                 string privateKey = assignment.Student.PrivateKey;
                 string fileName = assignment.FileName;
                 string absolutePath = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "ValueableFiles")).Root + assignment.Path;
+
+                MemoryStream encryptedFile = new MemoryStream();
+
                 try
                 {
-                    using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
+                    using (FileStream fsOut = new FileStream(absolutePath, FileMode.Open))
                     {
-                        MemoryStream download = Encryption.HybridDecrypt(privateKey);
+                        fsOut.CopyTo(encryptedFile);                       
                     }
                 }
                 catch (Exception ex)
@@ -200,6 +203,11 @@ namespace WebApplication1.Controllers
                     return View("Error", new ErrorViewModel() { Message = "Error while downloading the file try again later" });
                 }
 
+                MemoryStream download = Encryption.HybridDecrypt(encryptedFile, privateKey);
+                return File(download, "application/pdf", Guid.NewGuid() + ".pdf");
+            }
+            else 
+            {
                 return View();
             }
         }

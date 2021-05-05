@@ -200,11 +200,12 @@ namespace WebApplication1.Utility
             byte[] encKey = new byte[128];
             //Reading the 128bytes
             encryptedFile.Read(encKey, 0, 128);
-            byte[] key = AsymmetricDecrypt(encKey, privateKey);
 
             //Reading the encrypted IV
             byte[] encIv = new byte[128];
             encryptedFile.Read(encIv, 0, 128);
+
+            byte[] key = AsymmetricDecrypt(encKey, privateKey);
             byte[] iv = AsymmetricDecrypt(encIv, privateKey);
 
             MemoryStream encFile = new MemoryStream();
