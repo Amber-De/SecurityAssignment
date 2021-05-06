@@ -109,12 +109,13 @@ namespace WebApplication1.Controllers
 
                         try
                         {
-                            using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
+                            /*using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
                             {
                                 encryptedFile.CopyTo(fsOut);
-                            }
-
-                            f.Close();
+                            }*/
+                            
+                            //f.Close();
+                            System.IO.File.WriteAllBytes(absolutePath, encryptedFile.ToArray());
                         }
                         catch(Exception ex)
                         {
@@ -191,10 +192,11 @@ namespace WebApplication1.Controllers
 
                 try
                 {
-                    using (FileStream fsOut = new FileStream(absolutePath, FileMode.Open))
+                    using (var fsOut = new FileStream(absolutePath, FileMode.Open))
                     {
                         fsOut.CopyTo(encryptedFile);                       
                     }
+                    encryptedFile.Position = 0;
                 }
                 catch (Exception ex)
                 {

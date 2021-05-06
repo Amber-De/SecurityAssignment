@@ -87,6 +87,22 @@ namespace WebApplication1.Utility
             return msOut.ToArray();
         }
 
+        public static byte[] SymmetricHybridDecrypt(byte[] iv, byte[] secretKey, byte[]cipherAsBytes)
+        {
+            Rijndael myAlg = Rijndael.Create();
+            
+            MemoryStream msIn = new MemoryStream(cipherAsBytes);
+            msIn.Position = 0;
+
+            MemoryStream msOut = new MemoryStream();
+            CryptoStream cs = new CryptoStream(msOut, myAlg.CreateDecryptor(secretKey, iv), CryptoStreamMode.Write);
+            msIn.CopyTo(cs);
+            cs.FlushFinalBlock();
+            cs.Close();
+
+            return msOut.ToArray();
+        }
+
         public static string SymmetricEncrypt(string clearData)
         {
             var keys = GenerateKeys();
@@ -161,6 +177,7 @@ namespace WebApplication1.Utility
         public static byte[] AsymmetricDecrypt(byte[] cipher, string privateKey)
         {
             RSACryptoServiceProvider myAlg = new RSACryptoServiceProvider();
+            myAlg.FromXmlString(privateKey);
 
             byte[] originalText = myAlg.Decrypt(cipher, RSAEncryptionPadding.Pkcs1);
 
@@ -180,10 +197,11 @@ namespace WebApplication1.Utility
             byte[] fileInBytes = clearFile.ToArray();
             var encryptedFile = SymmetricEncrypt(fileInBytes, iv, key);
             byte[] encryptedKey = AsymmetricEncrypt(key, publicKey);
+            byte[] encryptedIv = AsymmetricEncrypt(iv, publicKey);
 
             MemoryStream msOut = new MemoryStream();
             msOut.Write(encryptedKey, 0, encryptedKey.Length);
-            msOut.Write(iv, 0, iv.Length);
+            msOut.Write(encryptedIv, 0, encryptedIv.Length);
 
             MemoryStream encryptedFileContent = new MemoryStream(encryptedFile);
             encryptedFileContent.Position = 0;
@@ -195,10 +213,12 @@ namespace WebApplication1.Utility
         public static MemoryStream HybridDecrypt(MemoryStream encryptedFile, string privateKey)
         {
             encryptedFile.Position = 0;
+            var fileBytes = encryptedFile.GetBuffer();
 
             //Reading the encrypted key
             byte[] encKey = new byte[128];
             //Reading the 128bytes
+            //FEJN QEDA TITFAW IL VALUE TAR READ???????????????????????
             encryptedFile.Read(encKey, 0, 128);
 
             //Reading the encrypted IV
@@ -212,7 +232,7 @@ namespace WebApplication1.Utility
             encryptedFile.CopyTo(encFile);
 
             byte[] encFileInBytes = encFile.ToArray();
-            byte[] fileDecrypted = SymmetricDecrypt(encFileInBytes);
+            byte[] fileDecrypted = SymmetricHybridDecrypt(iv, key, encFileInBytes);
 
             MemoryStream originalFile = new MemoryStream(fileDecrypted);
 
