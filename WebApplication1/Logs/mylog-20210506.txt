@@ -1,0 +1,269 @@
+2021-05-06T19:10:04.7302734+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T19:10:04.7727225+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T19:10:04.7750675+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T19:10:05.0059733+01:00 80000145-0006-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:11:16.6174922+01:00 80000061-0004-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:11:28.2832666+01:00 800002cb-0000-fc00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 194
+2021-05-06T19:11:43.3190093+01:00 800002c5-0000-ff00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\067d32c5-892b-4aaf-9fb0-93b85d0f2655.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\067d32c5-892b-4aaf-9fb0-93b85d0f2655.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 194
+2021-05-06T19:11:51.1937948+01:00 8000009f-0005-fc00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\99a4af06-4b48-44e2-8ee6-a00ca05c45d2.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\99a4af06-4b48-44e2-8ee6-a00ca05c45d2.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 194
+2021-05-06T19:12:30.3970027+01:00 800002cf-0000-ff00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:12:40.6730431+01:00 8000014f-0006-fd00-b63f-84710c7967bb [INF] User logged in. (fdce0db4)
+2021-05-06T19:12:40.8116858+01:00 800002d1-0000-ff00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:12:46.3208509+01:00 800001b4-0002-fe00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\d9901557-9906-4f54-a7d3-9fa1faa14aa8.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\d9901557-9906-4f54-a7d3-9fa1faa14aa8.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 194
+2021-05-06T19:12:59.9544845+01:00 800000dc-0001-ff00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\bd5b9698-9609-403b-ab8d-55c0747a8a75.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\bd5b9698-9609-403b-ab8d-55c0747a8a75.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 194
+2021-05-06T19:14:13.8867342+01:00 800001d8-0004-ff00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\48b970d9-259f-40b8-b7a2-93519e93928f.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\48b970d9-259f-40b8-b7a2-93519e93928f.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 194
+2021-05-06T19:14:18.7007784+01:00 8000015b-0006-fd00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\bd5b9698-9609-403b-ab8d-55c0747a8a75.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\bd5b9698-9609-403b-ab8d-55c0747a8a75.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 194
+2021-05-06T19:23:51.9063405+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T19:23:51.9170786+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T19:23:51.9201513+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T19:23:52.0704030+01:00 8000010a-0001-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:24:05.5591966+01:00 80000072-0004-fc00-b63f-84710c7967bb [INF] User logged in. (fdce0db4)
+2021-05-06T19:24:05.7198295+01:00 800001b5-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:25:01.6676485+01:00 800001da-0004-ff00-b63f-84710c7967bb [INF] jordandebono@live.com (f3bc76fe)
+2021-05-06T19:25:01.6776163+01:00 800000a6-0005-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:28:00.1905993+01:00 8000013e-0000-fe00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:28:20.4513076+01:00 80000168-0006-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:29:12.2445953+01:00 8000016a-0006-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:30:26.1978638+01:00 800000b0-0005-fc00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 189
+2021-05-06T19:31:13.9470014+01:00 800001e1-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:31:18.1575085+01:00 80000084-0004-fc00-b63f-84710c7967bb [INF] "amber debono" logged in with "Google" provider. (107abac5)
+2021-05-06T19:31:18.1618509+01:00 800001e5-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:31:21.8313854+01:00 800001e7-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:31:24.2963946+01:00 80000088-0004-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:31:28.5652816+01:00 80000252-0002-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:31:31.1328637+01:00 80000138-0007-fe00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:31:38.0915472+01:00 8000013a-0007-fe00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:32:10.3943674+01:00 800001ee-0000-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:32:16.1966225+01:00 8000019c-0007-fc00-b63f-84710c7967bb [ERR] The view '"Download"' was not found. Searched locations: ["/Views/Assignments/Download.cshtml", "/Views/Shared/Download.cshtml", "/Pages/Shared/Download.cshtml"] (9bb2756c)
+2021-05-06T19:32:16.2290572+01:00 8000019c-0007-fc00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.InvalidOperationException: The view 'Download' was not found. The following locations were searched:
+/Views/Assignments/Download.cshtml
+/Views/Shared/Download.cshtml
+/Pages/Shared/Download.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-05-06T19:32:30.5864847+01:00 8000010a-0006-fc00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:32:33.6230339+01:00 800000b2-0005-fc00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:32:35.6566679+01:00 8000010c-0006-fc00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:32:57.9576090+01:00 80000256-0002-fc00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:33:02.1555783+01:00 80000118-0001-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:33:16.5795630+01:00 80000184-0006-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:33:19.5864547+01:00 800001b6-0002-fe00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:33:22.2120174+01:00 800001f2-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:33:35.2701714+01:00 800001f4-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:34:44.2658963+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T19:34:44.2782322+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T19:34:44.2797549+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T19:34:44.3994021+01:00 8000025b-0002-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:34:52.8005742+01:00 800001e2-0004-ff00-b63f-84710c7967bb [INF] "amber debono" logged in with "Google" provider. (107abac5)
+2021-05-06T19:34:52.8180236+01:00 8000013e-0007-fe00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:34:55.5881170+01:00 800001f6-0000-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:34:57.3734676+01:00 800001ba-0002-fe00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\1fe23bb9-3800-4a40-9761-e9df116a694c.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\1fe23bb9-3800-4a40-9761-e9df116a694c.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 189
+2021-05-06T19:35:00.9694163+01:00 800001f8-0000-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:35:04.5081277+01:00 800001bc-0002-fe00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:35:06.5288163+01:00 800001be-0002-fe00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 189
+2021-05-06T19:35:08.7757306+01:00 800001c0-0002-fe00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:35:48.0254590+01:00 8000009a-0004-fc00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:35:53.8365173+01:00 800001c2-0002-fe00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:36:02.2541485+01:00 80000264-0002-fc00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 189
+2021-05-06T19:36:05.8193017+01:00 80000202-0000-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:36:17.2817443+01:00 80000204-0000-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T19:36:29.1460679+01:00 80000206-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:37:10.5159392+01:00 800000a0-0004-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:37:25.0854123+01:00 80000212-0000-fd00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 189
+2021-05-06T19:37:33.4723933+01:00 80000216-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T19:37:42.2547416+01:00 800000a8-0004-fc00-b63f-84710c7967bb [INF] User logged in. (fdce0db4)
+2021-05-06T19:37:42.4039262+01:00 80000218-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T20:27:10.6955162+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T20:27:10.7063282+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T20:27:10.7078353+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T20:27:12.1851801+01:00 80000194-0006-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T20:47:21.0967990+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T20:47:21.1077230+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T20:47:21.1094811+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T20:47:21.3530841+01:00 800000bc-0005-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T20:51:27.7353798+01:00 800000b0-0004-fc00-b63f-84710c7967bb [INF] jordandebono@live.com (f3bc76fe)
+2021-05-06T20:51:27.7476465+01:00 800000b2-0004-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T20:53:39.9735511+01:00 80000223-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T20:54:14.2179039+01:00 8000022b-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T20:55:35.7492272+01:00 800000be-0005-fc00-b63f-84710c7967bb [INF] jordandebono0@gmail.com (567e331b)
+2021-05-06T20:55:35.7557022+01:00 8000022d-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T21:50:33.6269699+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T21:50:33.6385354+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T21:50:33.6402491+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T21:50:35.1059463+01:00 80000099-0003-fb00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T21:58:20.2755578+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T21:58:20.2863652+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T21:58:20.2878181+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T21:58:20.5207327+01:00 80000231-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T21:58:42.3193973+01:00 800001a4-0006-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T21:58:55.8871835+01:00 80000133-0003-ff00-b63f-84710c7967bb [INF] User logged in. (fdce0db4)
+2021-05-06T21:58:56.0211795+01:00 80000237-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T21:59:36.3580837+01:00 800001c8-0002-fe00-b63f-84710c7967bb [INF] jordandebono@live.com (f3bc76fe)
+2021-05-06T21:59:36.3666657+01:00 800001ca-0002-fe00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T21:59:38.7386689+01:00 8000023d-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T22:00:14.8556849+01:00 80000241-0000-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T22:01:11.5675597+01:00 80000245-0000-fd00-b63f-84710c7967bb [INF] jordandebono0@gmail.com (567e331b)
+2021-05-06T22:01:11.5743572+01:00 800001cc-0002-fe00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T22:02:52.1107396+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T22:02:52.1293443+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T22:02:52.1315602+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T22:02:52.3698381+01:00 800000a1-0003-fb00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T22:03:00.7319870+01:00 80000126-0001-fd00-b63f-84710c7967bb [ERR] The view '"Download"' was not found. Searched locations: ["/Views/Assignments/Download.cshtml", "/Views/Shared/Download.cshtml", "/Pages/Shared/Download.cshtml"] (9bb2756c)
+2021-05-06T22:03:00.8230556+01:00 80000126-0001-fd00-b63f-84710c7967bb [ERR] An unhandled exception has occurred while executing the request. (48a46595)
+System.InvalidOperationException: The view 'Download' was not found. The following locations were searched:
+/Views/Assignments/Download.cshtml
+/Views/Shared/Download.cshtml
+/Pages/Shared/Download.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-05-06T22:04:54.6518723+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T22:04:54.6621819+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T22:04:54.6637885+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T22:04:54.9117322+01:00 800000c3-0005-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T22:05:58.8772954+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T22:05:58.8897972+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T22:05:58.8914041+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T22:05:59.1654489+01:00 8000027c-0002-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T22:06:58.5571829+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T22:06:58.5698637+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T22:06:58.5718196+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T22:06:58.8353671+01:00 800000a4-0003-fb00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T22:07:05.1252550+01:00 800000c7-0005-fc00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 190
+2021-05-06T22:19:12.9870728+01:00 80000147-0007-fe00-b63f-84710c7967bb [ERR] Error while saving the file try again later (e02535e7)
+System.IO.FileNotFoundException: Could not find file 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'.
+File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\ValueableFiles\89cfb513-73ca-4e44-ac8e-d1a8beab92ee.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 190

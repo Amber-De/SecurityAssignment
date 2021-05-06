@@ -109,12 +109,7 @@ namespace WebApplication1.Controllers
 
                         try
                         {
-                            using (FileStream fsOut = new FileStream(absolutePath, FileMode.CreateNew, FileAccess.Write))
-                            {
-                                encryptedFile.CopyTo(fsOut);
-                            }
-
-                            f.Close();
+                            System.IO.File.WriteAllBytes(absolutePath, encryptedFile.ToArray());
                         }
                         catch(Exception ex)
                         {
@@ -122,7 +117,8 @@ namespace WebApplication1.Controllers
                             _logger.LogError(ex, "Error while saving the file try again later");
                             return View("Error", new ErrorViewModel() { Message = "Error while saving the file try again later" });
                         }
-                       
+
+                        assignment.Signature = Encryption.SignData(encryptedFile);
                     }
                                                            
                     assignment.StudentId = student.Id;
@@ -181,7 +177,7 @@ namespace WebApplication1.Controllers
             string loggedInUser = User.Identity.Name;
             var assignment = _assignmentsService.GetAssignmentById(assignmentId);
 
-            if (User.IsInRole("STUDENT"))
+            if (assignment != null)
             {
                 string privateKey = assignment.Student.PrivateKey;
                 string fileName = assignment.FileName;
@@ -198,13 +194,22 @@ namespace WebApplication1.Controllers
                 }
                 catch (Exception ex)
                 {
-
                     _logger.LogError(ex, "Error while saving the file try again later");
                     return View("Error", new ErrorViewModel() { Message = "Error while downloading the file try again later" });
                 }
-
-                MemoryStream download = Encryption.HybridDecrypt(encryptedFile, privateKey);
-                return File(download, "application/pdf", Guid.NewGuid() + ".pdf");
+                bool validation = Encryption.VerifyData(encryptedFile, assignment.Signature);
+                
+                if (validation)
+                {
+                    MemoryStream download = Encryption.HybridDecrypt(encryptedFile, privateKey);
+                    return File(download, "application/pdf", Guid.NewGuid() + ".pdf");
+                }
+                else
+                {
+                    TempData["error"] = "Cannot download copied file - This file is submitted by more than one student";
+                    return Redirect("/Tasks/List");
+                }
+                
             }
             else 
             {
