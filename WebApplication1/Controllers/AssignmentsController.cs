@@ -208,8 +208,7 @@ namespace WebApplication1.Controllers
                 {
                     TempData["error"] = "Cannot download copied file - This file is submitted by more than one student";
                     return Redirect("/Tasks/List");
-                }
-                
+                }               
             }
             else 
             {

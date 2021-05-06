@@ -23,19 +23,20 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @{ var comment = System.Net.WebUtility.HtmlDecode(item.CommentArea);}
-                <span>@comment</span>
-            </td>
-            <td>
-                @ViewBag.student.Name @ViewBag.student.Surname
-            </td>
-            <td>
-                @ViewBag.teacher.Email
-            </td>
-        </tr>
-          
+            <tr>
+                <td>
+                    @{ var comment = System.Net.WebUtility.HtmlDecode(item.CommentArea);}
+                    <span>@comment</span>
+                </td>
+                <td>
+                    @ViewBag.student.Name @ViewBag.student.Surname
+                </td>
+                <td>
+                    @ViewBag.teacher.Email
+                </td>
+            </tr>
+
         }
     </tbody>
 </table>
+

@@ -267,3 +267,11 @@ File name: 'C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Valu
    at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
    at System.IO.FileStream..ctor(String path, FileMode mode)
    at WebApplication1.Controllers.AssignmentsController.Download(Guid assignmentId) in C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1\Controllers\AssignmentsController.cs:line 190
+2021-05-06T23:53:35.4825564+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-06T23:53:35.4976218+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-06T23:53:35.4995044+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-06T23:53:35.6645167+01:00 800000a6-0003-fb00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T23:53:43.7177004+01:00 8000027f-0002-fc00-b63f-84710c7967bb [INF] "amber debono" logged in with "Google" provider. (107abac5)
+2021-05-06T23:53:43.7338369+01:00 80000281-0002-fc00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-06T23:53:47.9510525+01:00 80000257-0000-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
+2021-05-06T23:54:14.3963248+01:00 800001bf-0006-fd00-b63f-84710c7967bb [INF] List of Assignments was show successfully (10c4189b)
