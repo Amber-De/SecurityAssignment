@@ -1,0 +1,5 @@
+2021-05-10T20:46:31.1713657+01:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-10T20:46:31.2307414+01:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-10T20:46:31.2369504+01:00  [INF] Content root path: "C:\Users\Hpuser\source\repos\SecurityAssignment\WebApplication1" (b5d60022)
+2021-05-10T20:46:31.6758034+01:00 8000719d-0006-fd00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)
+2021-05-10T20:46:42.2656838+01:00 80000160-0001-fe00-b63f-84710c7967bb [INF] Home index accessed (dd6449db)

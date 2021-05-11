@@ -172,10 +172,11 @@ namespace WebApplication1.Controllers
             }
         }
 
-        public IActionResult Download(Guid assignmentId)
+        [AssignmentOwnerAuthorize]
+        public IActionResult Download(Guid id)
         {
             string loggedInUser = User.Identity.Name;
-            var assignment = _assignmentsService.GetAssignmentById(assignmentId);
+            var assignment = _assignmentsService.GetAssignmentById(id);
 
             if (assignment != null)
             {
